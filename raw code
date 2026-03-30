@@ -1,0 +1,72 @@
+let ball=[];
+let previewStar = null;
+let name;
+//let RanDomNum= floor(random(100));
+//ball.push("Sun");
+
+function setup(){
+	
+	createCanvas(windowWidth,windowHeight);
+	//background("rgb(87, 87, 255)");
+	 previewStar = {
+        size: random(15, 50),
+        color: [random(255), random(255), random(255)],
+        name: "预览星"
+    };
+	
+}
+// draw the star and store the data in star
+function draw(){
+	background("rgb(87, 87, 255)");
+	for(let i=0;i<ball.length;i++){
+		//star
+		let b =ball[i];
+		noStroke();
+		fill(previewStar.color);
+		circle(b.x,b.y,previewStar.size);
+		
+		// text
+		
+		fill(0);
+		textSize(12);
+		textAlign(CENTER);
+		text(b.name,mouseX,mouseY - b.size/2-5);
+	}
+	if (previewStar) {
+        fill(previewStar.color[0], previewStar.color[1], previewStar.color[2], 150); // 半透明
+        noStroke();
+        circle(mouseX, mouseY, previewStar.size);
+        
+        // 显示名字预览
+        fill(0);
+        textSize(12);
+        textAlign(CENTER);
+        text(previewStar.name, mouseX, mouseY - previewStar.size/2 - 5);
+    }
+	
+	
+}
+
+
+function mousePressed(){
+	let message = prompt("Write something");
+	let RanDomNum= floor(random(100));
+	name= prompt("The name of Star","Star"+RanDomNum);
+if (name===null||name===""){
+	name="NG~~";
+	
+}
+	ball.push({
+	x:mouseX,
+	y:mouseY,
+	size:random(15,50),
+	color:[random(255),random(255),random(255)],
+	name:name,
+	message:message
+		
+})
+	
+	
+	console.log("New Stars' name is "+name);
+	
+}
